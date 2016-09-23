@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace DapperWrapper.Interfaces
 {
@@ -155,5 +157,125 @@ namespace DapperWrapper.Interfaces
             CommandType? commandType = default(CommandType?));
 
         #endregion Additional Extensions
+
+        #region Async
+
+        Task<int> ExecuteAsync(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = default(int?),
+            CommandType? commandType = default(CommandType?));
+
+        Task<IEnumerable<dynamic>> QueryAsync(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = default(int?),
+            CommandType? commandType = default(CommandType?));
+
+        Task<IEnumerable<T>> QueryAsync<T>(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = default(int?),
+            CommandType? commandType = default(CommandType?));
+
+        Task<IGridReader> QueryMultipleAsync(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = default(int?),
+            CommandType? commandType = default(CommandType?));
+
+        Task<IEnumerable<dynamic>> QueryAsync(CommandDefinition command);
+
+        Task<dynamic> QueryFirstAsync(CommandDefinition command);
+
+        Task<dynamic> QueryFirstOrDefaultAsync(CommandDefinition command);
+
+        Task<dynamic> QuerySingleAsync(CommandDefinition command);
+
+        Task<dynamic> QuerySingleOrDefaultAsync(CommandDefinition command);
+
+        Task<T> QueryFirstAsync<T>(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<T> QueryFirstOrDefaultAsync<T>(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<T> QuerySingleAsync<T>(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<T> QuerySingleOrDefaultAsync<T>(
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<IEnumerable<object>> QueryAsync(
+            Type type,
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<object> QueryFirstAsync(
+            Type type,
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<object> QueryFirstOrDefaultAsync(
+            Type type,
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<object> QuerySingleAsync(
+            Type type,
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<object> QuerySingleOrDefaultAsync(
+            Type type,
+            string sql,
+            object param = null,
+            IDbTransaction transaction = null,
+            int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        Task<IEnumerable<object>> QueryAsync(Type type, CommandDefinition command);
+
+        Task<object> QueryFirstAsync(Type type, CommandDefinition command);
+
+        Task<object> QueryFirstOrDefaultAsync(Type type, CommandDefinition command);
+
+        Task<object> QuerySingleAsync(Type type, CommandDefinition command);
+
+        Task<object> QuerySingleOrDefaultAsync(Type type, CommandDefinition command);
+
+        #endregion Async
     }
 }

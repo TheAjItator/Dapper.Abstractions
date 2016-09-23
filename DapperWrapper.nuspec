@@ -11,7 +11,7 @@
     <description>$description$</description>
     <tags>anglicangeek anglican geek halfogre half-ogre half ogre tazmainiandevil dapper wrapper dapperwrapper</tags>
     <dependencies>
-      <dependency id="Dapper" version="1.42" />
+      <dependency id="Dapper" version="1.50" />
     </dependencies>
   </metadata>
   <files>

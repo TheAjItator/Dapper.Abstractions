@@ -78,6 +78,81 @@ namespace DapperWrapper
             return SqlMapper.Query<TFirst, TSecond, TReturn>(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
+        public dynamic QueryFirst(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QueryFirstOrDefault(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QuerySingle(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QuerySingleOrDefault(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QueryFirst(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst(_sqlConnection, type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QueryFirstOrDefault(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault(_sqlConnection, type, sql, param, transaction, commandTimeout,
+                commandType);
+        }
+
+        public object QuerySingle(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle(_sqlConnection, type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QuerySingleOrDefault(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault(_sqlConnection, type, sql, param, transaction, commandTimeout,
+                commandType);
+        }
+
+        public T QueryFirst<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QueryFirstOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QuerySingle<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault<T>(_sqlConnection, sql, param, transaction, commandTimeout,
+                commandType);
+        }
+
         public IEnumerable<T> Query<T>(
             string sql,
             object param = null,

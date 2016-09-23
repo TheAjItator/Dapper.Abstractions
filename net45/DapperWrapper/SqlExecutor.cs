@@ -79,6 +79,80 @@ namespace DapperWrapper
             return SqlMapper.Query<TFirst, TSecond, TReturn>(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
+        public dynamic QueryFirst(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+          CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QueryFirstOrDefault(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QuerySingle(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public dynamic QuerySingleOrDefault(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QueryFirst(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst(_sqlConnection, type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QueryFirstOrDefault(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault(_sqlConnection, type, sql, param, transaction, commandTimeout,
+                commandType);
+        }
+
+        public object QuerySingle(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle(_sqlConnection, type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public object QuerySingleOrDefault(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault(_sqlConnection, type, sql, param, transaction, commandTimeout,
+                commandType);
+        }
+
+        public T QueryFirst<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirst<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QueryFirstOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QueryFirstOrDefault<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QuerySingle<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingle<T>(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public T QuerySingleOrDefault<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.QuerySingleOrDefault<T>(_sqlConnection, sql, param, transaction, commandTimeout,
+                commandType);
+        }
         public IEnumerable<T> Query<T>(
             string sql,
             object param = null,
@@ -183,8 +257,118 @@ namespace DapperWrapper
             int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?))
         {
-            var reader = await _sqlConnection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType);
+            var reader = await _sqlConnection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType).ConfigureAwait(false);
             return new GridReaderWrapper(reader);
+        }
+
+        public Task<IEnumerable<dynamic>> QueryAsync(CommandDefinition command)
+        {
+            return _sqlConnection.QueryAsync(command);
+        }
+
+        public Task<dynamic> QueryFirstAsync(CommandDefinition command)
+        {
+            return _sqlConnection.QueryFirstAsync(command);
+        }
+
+        public Task<dynamic> QueryFirstOrDefaultAsync(CommandDefinition command)
+        {
+            return _sqlConnection.QueryFirstOrDefaultAsync(command);
+        }
+
+        public Task<dynamic> QuerySingleAsync(CommandDefinition command)
+        {
+            return _sqlConnection.QuerySingleAsync(command);
+        }
+
+        public Task<dynamic> QuerySingleOrDefaultAsync(CommandDefinition command)
+        {
+            return _sqlConnection.QuerySingleOrDefaultAsync(command);
+        }
+
+        public Task<T> QueryFirstAsync<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return _sqlConnection.QueryFirstAsync<T>(sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<T> QueryFirstOrDefaultAsync<T>(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QueryFirstOrDefaultAsync<T>(sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<T> QuerySingleAsync<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return _sqlConnection.QuerySingleAsync<T>(sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<T> QuerySingleOrDefaultAsync<T>(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QuerySingleOrDefaultAsync<T>(sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<IEnumerable<object>> QueryAsync(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QueryAsync(type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<object> QueryFirstAsync(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QueryFirstAsync(type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<object> QueryFirstOrDefaultAsync(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QueryFirstOrDefaultAsync(type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<object> QuerySingleAsync(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QuerySingleAsync(type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<object> QuerySingleOrDefaultAsync(Type type, string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return _sqlConnection.QuerySingleOrDefaultAsync(type, sql, param, transaction, commandTimeout, commandType);
+        }
+
+        public Task<IEnumerable<T>> QueryAsync<T>(CommandDefinition command)
+        {
+            return _sqlConnection.QueryAsync<T>(command);
+        }
+
+        public Task<IEnumerable<object>> QueryAsync(Type type, CommandDefinition command)
+        {
+            return _sqlConnection.QueryAsync(type, command);
+        }
+
+        public Task<object> QueryFirstAsync(Type type, CommandDefinition command)
+        {
+            return _sqlConnection.QueryFirstAsync(type, command);
+        }
+
+        public Task<object> QueryFirstOrDefaultAsync(Type type, CommandDefinition command)
+        {
+            return _sqlConnection.QueryFirstOrDefaultAsync(type, command);
+        }       
+
+        public Task<object> QuerySingleAsync(Type type, CommandDefinition command)
+        {
+            return _sqlConnection.QuerySingleAsync(type, command);
+        }
+
+
+        public Task<object> QuerySingleOrDefaultAsync(Type type, CommandDefinition command)
+        {
+            return _sqlConnection.QuerySingleAsync(type, command);
         }
 
         #endregion Async Methods
