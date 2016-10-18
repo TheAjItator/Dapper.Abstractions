@@ -19,7 +19,7 @@ namespace DapperWrapper
         /// <summary>
         /// The SQL connection object
         /// </summary>
-        private readonly SqlConnection _sqlConnection;
+        private readonly IDbConnection _sqlConnection;
 
         #endregion Members
 
@@ -27,7 +27,7 @@ namespace DapperWrapper
         /// Constructor for the SQL Executor
         /// </summary>
         /// <param name="sqlConnection"></param>
-        public SqlExecutor(SqlConnection sqlConnection)
+        public SqlExecutor(IDbConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }
