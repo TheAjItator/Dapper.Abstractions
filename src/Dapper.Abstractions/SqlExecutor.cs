@@ -1,13 +1,9 @@
-﻿using Dapper;
-using DapperWrapper.Extensions;
-using DapperWrapper.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace DapperWrapper
+namespace Dapper.Abstractions
 {
     /// <summary>
     /// Class to create a Sql Executor
@@ -80,7 +76,7 @@ namespace DapperWrapper
         }
 
         public dynamic QueryFirst(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
-          CommandType? commandType = null)
+            CommandType? commandType = null)
         {
             return SqlMapper.QueryFirst(_sqlConnection, sql, param, transaction, commandTimeout, commandType);
         }
@@ -153,6 +149,7 @@ namespace DapperWrapper
             return SqlMapper.QuerySingleOrDefault<T>(_sqlConnection, sql, param, transaction, commandTimeout,
                 commandType);
         }
+
         public IEnumerable<T> Query<T>(
             string sql,
             object param = null,
@@ -177,7 +174,7 @@ namespace DapperWrapper
             CommandType? commandType = default(CommandType?))
         {
             var reader = _sqlConnection.QueryMultiple(sql, param, transaction, commandTimeout, commandType);
-            return new GridReaderWrapper(reader);
+            return new GridReaderAbstraction(reader);
         }
 
         #endregion Sync Methods
@@ -258,7 +255,7 @@ namespace DapperWrapper
             CommandType? commandType = default(CommandType?))
         {
             var reader = await _sqlConnection.QueryMultipleAsync(sql, param, transaction, commandTimeout, commandType).ConfigureAwait(false);
-            return new GridReaderWrapper(reader);
+            return new GridReaderAbstraction(reader);
         }
 
         public Task<IEnumerable<dynamic>> QueryAsync(CommandDefinition command)
@@ -358,13 +355,12 @@ namespace DapperWrapper
         public Task<object> QueryFirstOrDefaultAsync(Type type, CommandDefinition command)
         {
             return _sqlConnection.QueryFirstOrDefaultAsync(type, command);
-        }       
+        }
 
         public Task<object> QuerySingleAsync(Type type, CommandDefinition command)
         {
             return _sqlConnection.QuerySingleAsync(type, command);
         }
-
 
         public Task<object> QuerySingleOrDefaultAsync(Type type, CommandDefinition command)
         {

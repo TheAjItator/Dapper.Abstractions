@@ -1,8 +1,7 @@
-﻿using DapperWrapper.Interfaces;
-using System;
+﻿using System;
 using System.Data.SqlClient;
 
-namespace DapperWrapper
+namespace Dapper.Abstractions
 {
     public class SqlExecutorFactory : IDbExecutorFactory
     {

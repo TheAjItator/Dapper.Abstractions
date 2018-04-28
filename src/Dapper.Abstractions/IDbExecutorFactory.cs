@@ -1,4 +1,4 @@
-﻿namespace DapperWrapper.Interfaces
+﻿namespace Dapper.Abstractions
 {
     public interface IDbExecutorFactory
     {

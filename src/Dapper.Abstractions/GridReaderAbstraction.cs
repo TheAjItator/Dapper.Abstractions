@@ -1,15 +1,13 @@
-﻿using Dapper;
-using DapperWrapper.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace DapperWrapper
+namespace Dapper.Abstractions
 {
-    public class GridReaderWrapper : IGridReader
+    public class GridReaderAbstraction : IGridReader
     {
         private readonly SqlMapper.GridReader _gridReader;
 
-        public GridReaderWrapper(SqlMapper.GridReader gridReader)
+        public GridReaderAbstraction(SqlMapper.GridReader gridReader)
         {
             _gridReader = gridReader;
         }

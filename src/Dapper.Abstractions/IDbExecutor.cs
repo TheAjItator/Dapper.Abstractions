@@ -1,13 +1,14 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DapperWrapper.Interfaces
+namespace Dapper.Abstractions
 {
     public interface IDbExecutor : IDisposable
     {
+        #region Sync Methods
+
         int Execute(
             string sql,
             object param = null,
@@ -136,6 +137,8 @@ namespace DapperWrapper.Interfaces
             int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?));
 
+        #endregion Sync Methods
+
         #region Additional Extensions
 
         IEnumerable<T> QueryAndTrimResults<T>(
@@ -158,7 +161,7 @@ namespace DapperWrapper.Interfaces
 
         #endregion Additional Extensions
 
-        #region Async
+        #region Async Methods
 
         Task<int> ExecuteAsync(
             string sql,
@@ -276,6 +279,6 @@ namespace DapperWrapper.Interfaces
 
         Task<object> QuerySingleOrDefaultAsync(Type type, CommandDefinition command);
 
-        #endregion Async
+        #endregion Async Methods
     }
 }

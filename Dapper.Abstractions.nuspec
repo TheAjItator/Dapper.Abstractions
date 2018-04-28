@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$owners$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/Tazmainiandevil/Dapper.Abstractions/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://raw.githubusercontent.com/Tazmainiandevil/Dapper.Abstractions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>tazmainiandevil dapper wrapper dapperwrapper abstractions dapper.abstractions</tags>
+    <releaseNotes>$releaseNotes$</releaseNotes>
+    <dependencies>
+      <dependency id="Dapper" version="1.50.4" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="src\Dapper.Abstractions\bin\Release\net451\Dapper.Abstractions.dll" target="lib\net451\Dapper.Abstractions.dll" />
+    <file src="src\Dapper.Abstractions\bin\Release\net461\Dapper.Abstractions.dll" target="lib\net461\Dapper.Abstractions.dll" />
+    <file src="src\Dapper.Abstractions\bin\Release\netstandard2.0\Dapper.Abstractions.dll" target="lib\netstandard2.0\Dapper.Abstractions.dll" />
+  </files>
+</package>

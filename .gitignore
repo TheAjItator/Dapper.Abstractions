@@ -1,9 +1,8 @@
-bin
-obj
-*.user
-*.suo
-DapperWrapper*.nupkg
-_ReSharper*
-packages
-/.vs/config
-*.DotSettings
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+**/obj
+**/bin
+/.vs

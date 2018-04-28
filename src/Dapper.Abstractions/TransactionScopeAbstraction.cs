@@ -1,9 +1,8 @@
-﻿using DapperWrapper.Interfaces;
-using System.Transactions;
+﻿using System.Transactions;
 
-namespace DapperWrapper
+namespace Dapper.Abstractions
 {
-    public class TransactionScopeWrapper : ITransactionScope
+    public class TransactionScopeAbstraction : ITransactionScope
     {
         private readonly TransactionScope _transactionScope;
 
@@ -11,7 +10,7 @@ namespace DapperWrapper
         /// Constructor
         /// </summary>
         /// <param name="transactionScope">The transaction scope</param>
-        public TransactionScopeWrapper(TransactionScope transactionScope)
+        public TransactionScopeAbstraction(TransactionScope transactionScope)
         {
             _transactionScope = transactionScope;
         }

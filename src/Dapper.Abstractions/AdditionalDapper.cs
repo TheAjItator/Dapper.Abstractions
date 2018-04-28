@@ -1,11 +1,10 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
 
-namespace DapperWrapper.Extensions
+namespace Dapper.Abstractions
 {
     /// <summary>
     /// Additional extensions for Dapper

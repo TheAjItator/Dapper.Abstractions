@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DapperWrapper.Interfaces
+namespace Dapper.Abstractions
 {
     public interface IGridReader : IDisposable
     {

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net451;net461;netstandard2.0</TargetFrameworks>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <Version>1.0.0</Version>
+    <PackageVersion>1.0.0</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.4" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net451'">
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+
+ <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <Reference Include="System.Transactions" />
+  </ItemGroup>
+</Project>
