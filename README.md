@@ -1,6 +1,7 @@
 # Dapper.Abstractions
 
-<image src="https://ci.appveyor.com/api/projects/status/github/Tazmainiandevil/dapper-abstractions?branch=master&svg=true">
+
+[![Build status](https://ci.appveyor.com/api/projects/status/28kh570vv7wdmunk?svg=true)](https://ci.appveyor.com/project/Tazmainiandevil/dapper-abstractions)
 
 <a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a>
 
