@@ -35,13 +35,13 @@ namespace Dapper.Abstractions
             CommandType? commandType = default(CommandType?));
 
         IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(
-            string sql, 
-            Func<TFirst, TSecond, TThird, TReturn> map, 
-            object param = null, 
-            IDbTransaction transaction = null, 
-            bool buffered = true, 
-            string splitOn = "Id", 
-            int? commandTimeout = default(int?), 
+            string sql,
+            Func<TFirst, TSecond, TThird, TReturn> map,
+            object param = null,
+            IDbTransaction transaction = null,
+            bool buffered = true,
+            string splitOn = "Id",
+            int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?));
 
         IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(
@@ -172,6 +172,41 @@ namespace Dapper.Abstractions
             IDbTransaction transaction = null,
             int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?));
+
+        int Execute(CommandDefinition command);
+
+        object ExecuteScalar(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null);
+
+        T ExecuteScalar<T>(string sql, object param = null, IDbTransaction transaction = null,
+            int? commandTimeout = null, CommandType? commandType = null);
+
+        object ExecuteScalar(CommandDefinition command);
+
+        T ExecuteScalar<T>(CommandDefinition command);
+
+        IDataReader ExecuteReader(string sql, object param = null,
+            IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        IDataReader ExecuteReader(CommandDefinition command);
+
+        IDataReader ExecuteReader(CommandDefinition command, CommandBehavior commandBehavior);
+
+        IEnumerable<object> Query(Type type, string sql, object param = null,
+            IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        IEnumerable<T> Query<T>(CommandDefinition command);
+
+        T QueryFirst<T>(CommandDefinition command);
+
+        T QueryFirstOrDefault<T>(CommandDefinition command);
+
+        T QuerySingle<T>(CommandDefinition command);
+
+        T QuerySingleOrDefault<T>(CommandDefinition command);
+
+        IGridReader QueryMultiple(CommandDefinition command);
 
         #endregion Sync Methods
 
@@ -314,6 +349,70 @@ namespace Dapper.Abstractions
         Task<object> QuerySingleAsync(Type type, CommandDefinition command);
 
         Task<object> QuerySingleOrDefaultAsync(Type type, CommandDefinition command);
+
+        Task<dynamic> QueryFirstAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<dynamic> QueryFirstOrDefaultAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<dynamic> QuerySingleAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<dynamic> QuerySingleOrDefaultAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<T>> QueryAsync<T>(CommandDefinition command);
+
+        Task<T> QueryFirstAsync<T>(CommandDefinition command);
+
+        Task<T> QueryFirstOrDefaultAsync<T>(CommandDefinition command);
+
+        Task<T> QuerySingleAsync<T>(CommandDefinition command);
+
+        Task<T> QuerySingleOrDefaultAsync<T>(CommandDefinition command);
+
+        Task<int> ExecuteAsync(CommandDefinition command);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TReturn>(string sql, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(string sql, Func<TFirst, TSecond, TThird, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TThird, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TThird, TFourth, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IEnumerable<TReturn>> QueryAsync<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(CommandDefinition command, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, string splitOn = "Id");
+
+        Task<IEnumerable<TReturn>> QueryAsync<TReturn>(string sql, Type[] types,
+            Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true,
+            string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IGridReader> QueryMultipleAsync(CommandDefinition command);
+
+        Task<IDataReader> ExecuteReaderAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<IDataReader> ExecuteReaderAsync(CommandDefinition command);
+
+        Task<IDataReader> ExecuteReaderAsync(CommandDefinition command, CommandBehavior commandBehavior);
+
+        Task<object> ExecuteScalarAsync(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<T> ExecuteScalarAsync<T>(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
+
+        Task<object> ExecuteScalarAsync(CommandDefinition command);
+
+        Task<T> ExecuteScalarAsync<T>(CommandDefinition command);
 
         #endregion Async Methods
     }

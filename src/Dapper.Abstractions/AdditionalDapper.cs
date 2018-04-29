@@ -13,16 +13,32 @@ namespace Dapper.Abstractions
     {
         #region Trim Results
 
-        public static IEnumerable<T> Query<T>(this IDbConnection cnn, string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null)
+        public static IEnumerable<T> Query<T>(
+            this IDbConnection cnn,
+            string sql, 
+            object param = null,
+            IDbTransaction transaction = null,
+            bool buffered = true, 
+            int? commandTimeout = null, 
+            CommandType? commandType = null)
         {
             var dapperResult = SqlMapper.Query<T>(cnn, sql, param, transaction, buffered, commandTimeout, commandType);
             var result = TrimStrings(dapperResult.ToList());
             return result;
         }
 
-        public static IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(this IDbConnection cnn, string sql, Func<TFirst, TSecond, TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = default(int?), CommandType? commandType = default(CommandType?))
+        public static IEnumerable<TReturn> Query<TFirst, TSecond, TReturn>(
+            this IDbConnection cnn, 
+            string sql, 
+            Func<TFirst, TSecond, TReturn> map, 
+            object param = null, 
+            IDbTransaction transaction = null, 
+            bool buffered = true,
+            string splitOn = "Id", 
+            int? commandTimeout = default(int?), 
+            CommandType? commandType = default(CommandType?))
         {
-            var dapperResult = SqlMapper.Query<TFirst, TSecond, TReturn>(cnn, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            var dapperResult = SqlMapper.Query(cnn, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
             var result = TrimStrings(dapperResult.ToList());
             return result;
         }
@@ -51,11 +67,7 @@ namespace Dapper.Abstractions
 
         private static string SafeTrim(this string source)
         {
-            if (source == null)
-            {
-                return null;
-            }
-            return source.Trim();
+            return source?.Trim();
         }
 
         #endregion Private Methods
