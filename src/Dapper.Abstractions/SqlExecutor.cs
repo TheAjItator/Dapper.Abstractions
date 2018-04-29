@@ -72,7 +72,79 @@ namespace Dapper.Abstractions
             int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?))
         {
-            return SqlMapper.Query<TFirst, TSecond, TReturn>(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(string sql, 
+            Func<TFirst, TSecond, TThird, TReturn> map, 
+            object param = null,
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = default(int?),
+            CommandType? commandType = default(CommandType?))
+        {
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(string sql, 
+            Func<TFirst, TSecond, TThird, TFourth, TReturn> map, 
+            object param = null,
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(string sql, 
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, 
+            object param = null,
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(string sql, 
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, 
+            object param = null,
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = null,
+            CommandType? commandType = null)
+        {
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(string sql, 
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map,
+            object param = null, 
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id",
+            int? commandTimeout = null, 
+            CommandType? commandType = null)
+        {
+            return SqlMapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+        }
+
+        public IEnumerable<TReturn> Query<TReturn>(string sql, Type[] types, 
+            Func<object[], TReturn> map, 
+            object param = null, 
+            IDbTransaction transaction = null,
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = null, 
+            CommandType? commandType = null)
+        {
+            return SqlMapper.Query(_sqlConnection, sql, types, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         public dynamic QueryFirst(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null,
@@ -210,7 +282,7 @@ namespace Dapper.Abstractions
             int? commandTimeout = null,
             CommandType? commandType = null)
         {
-            return AdditionalDapper.Query<TFirst, TSecond, TReturn>(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
+            return AdditionalDapper.Query(_sqlConnection, sql, map, param, transaction, buffered, splitOn, commandTimeout, commandType);
         }
 
         #endregion Additional Extensions

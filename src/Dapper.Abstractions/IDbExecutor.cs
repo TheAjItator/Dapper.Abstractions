@@ -34,6 +34,42 @@ namespace Dapper.Abstractions
             int? commandTimeout = default(int?),
             CommandType? commandType = default(CommandType?));
 
+        IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TReturn>(
+            string sql, 
+            Func<TFirst, TSecond, TThird, TReturn> map, 
+            object param = null, 
+            IDbTransaction transaction = null, 
+            bool buffered = true, 
+            string splitOn = "Id", 
+            int? commandTimeout = default(int?), 
+            CommandType? commandType = default(CommandType?));
+
+        IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TReturn>(
+            string sql,
+            Func<TFirst, TSecond, TThird, TFourth, TReturn> map, object param = null, IDbTransaction transaction = null,
+            bool buffered = true, string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
+        IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TReturn>(
+            string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TReturn> map, object param = null,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn>(
+            string sql, Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TReturn> map, object param = null,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        IEnumerable<TReturn> Query<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn>(
+            string sql,
+            Func<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TReturn> map, object param = null,
+            IDbTransaction transaction = null, bool buffered = true, string splitOn = "Id", int? commandTimeout = null,
+            CommandType? commandType = null);
+
+        IEnumerable<TReturn> Query<TReturn>(
+            string sql, Type[] types,
+            Func<object[], TReturn> map, object param = null, IDbTransaction transaction = null, bool buffered = true,
+            string splitOn = "Id", int? commandTimeout = null, CommandType? commandType = null);
+
         dynamic QueryFirst(
             string sql,
             object param = null,
