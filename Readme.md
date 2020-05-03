@@ -5,7 +5,7 @@
 
 <a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a>
 
-Support for .NET 4.5.1, .NET 4.6.1 and .NET Standard 2.0
+Support for .NET Standard 2.0
 
 Dapper.Abstractions is a fork of DapperWrapper and is a library that wraps the [Dapper](https://github.com/StackExchange/dapper-dot-net) extension methods on `IDbConnection` to make unit testing easier.
 
