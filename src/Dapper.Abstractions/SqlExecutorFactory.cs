@@ -20,7 +20,7 @@ namespace Dapper.Abstractions
         {
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new ArgumentNullException("connectionString");
+                throw new ArgumentNullException(nameof(connectionString));
             }
 
             _connectionString = connectionString;

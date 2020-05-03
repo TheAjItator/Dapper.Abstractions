@@ -5,19 +5,21 @@
     <version>$version$</version>
     <authors>$author$</authors>
     <owners>$owners$</owners>
-    <licenseUrl>https://raw.githubusercontent.com/Tazmainiandevil/Dapper.Abstractions/master/LICENSE.txt</licenseUrl>
+    <license type="file">LICENSE.txt</license>    
     <projectUrl>https://github.com/Tazmainiandevil/Dapper.Abstractions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <tags>tazmainiandevil dapper wrapper dapperwrapper abstractions dapper.abstractions database sql</tags>
     <releaseNotes>$releaseNotes$</releaseNotes>
     <dependencies>
-      <dependency id="Dapper" version="1.50.4" />
+     <group targetFramework="netstandard2.0">
+      <dependency id="Dapper" version="2.0.35" />
+      <dependency id="System.Data.SqlClient" version="4.8.1" />      
+     </group> 
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Dapper.Abstractions\bin\Release\net451\Dapper.Abstractions.dll" target="lib\net451\Dapper.Abstractions.dll" />
-    <file src="src\Dapper.Abstractions\bin\Release\net461\Dapper.Abstractions.dll" target="lib\net461\Dapper.Abstractions.dll" />
+    <file src="LICENSE.txt" target="" />
     <file src="src\Dapper.Abstractions\bin\Release\netstandard2.0\Dapper.Abstractions.dll" target="lib\netstandard2.0\Dapper.Abstractions.dll" />
   </files>
 </package>
