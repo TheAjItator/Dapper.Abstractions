@@ -1,11 +1,10 @@
 # Dapper.Abstractions
 
-
 [![Build status](https://ci.appveyor.com/api/projects/status/28kh570vv7wdmunk?svg=true)](https://ci.appveyor.com/project/Tazmainiandevil/dapper-abstractions)
 
 <a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a>
 
-Support for .NET Standard 2.0
+Support for .NET Standard 2.0 and .NET 6.0
 
 Dapper.Abstractions is a fork of DapperWrapper and is a library that wraps the [Dapper](https://github.com/StackExchange/dapper-dot-net) extension methods on `IDbConnection` to make unit testing easier.
 
@@ -36,40 +35,56 @@ public IEnumerable<SemanticVersion> GetAllPackageVersions(string packageId, IDbE
 
   public IEnumerable<User> GetUsers()
   {
-      using (var db = _dbExecutorFactory.CreateExecutor())
-      {
-          var data = db.Query<User>("SELECT ID, Name FROM Users");
-          return data;
-      }
+      using var db = _dbExecutorFactory.CreateExecutor();
+      var data = db.Query<User>("SELECT ID, Name FROM Users");
+      return data;
   }
 ```
 
 ## Injecting `IDbExecutor`
 
-You probably already have an apporach to injecting `IDbConnection` into your app that you're happy with. That same approach will probably work just as well with `IDbExecutor` or `IDbExecutorFactory`.
+You probably already have an approach to injecting `IDbConnection` into your app that you're happy with. That same approach will probably work just as well with `IDbExecutor` or `IDbExecutorFactory`.
 
-### Example ASP.NET
+### Example ASP.NET .NET 6
+
+In Program.cs
+
 ```C#
-public void ConfigureServices(IServiceCollection services)
-{
-  var connectionString = Configuration["database:connectionstring"];
+using Dapper.Abstractions;
 
-  var dbExecutorFactory = new SqlExecutorFactory(connectionString);
+var builder = WebApplication.CreateBuilder(args);
+...
+var connectionString = builder.Configuration["database:connectionstring"];
 
-  services.AddSingleton<IDbExecutorFactory>(dbExecutorFactory);
-}
+var dbExecutorFactory = new SqlExecutorFactory(connectionString);
+
+builder.Services.AddSingleton<IDbExecutorFactory>(dbExecutorFactory);
+...
 ```
 
-### Example Non ASP.NET Application
+### Example .NET 6 Console
 
 ```C#
- var connectionString = Configuration["database:connectionstring"];
- var dbExecutorFactory = new SqlExecutorFactory(connectionString);
+using Dapper.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
- var serviceProvider = new ServiceCollection()
-            .AddSingleton<IDbExecutorFactory>(dbExecutorFactory)
-            .BuildServiceProvider();
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((builder, services) =>
+        services.AddSingleton<IDbExecutorFactory>(new SqlExecutorFactory(builder.Configuration["DatabaseConnectionString"])))
+    .Build();
 
+```
+or
+```C#
+using Dapper.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((builder, services) =>
+        services.AddSingleton<IDbExecutor>(new SqlExecutor(new SqlConnection(builder.Configuration["DatabaseConnectionString"]))))
+    .Build();
 ```
 
 ## Additional Extensions
@@ -87,11 +102,9 @@ There are also times when the data coming from the database is not trimmed and s
 
   public IEnumerable<User> GetUsers()
   {
-      using (var db = _dbExecutorFactory.CreateExecutor())
-      {
-          var data = db.QueryAndTrimResults<User>("SELECT ID, Name FROM Users");
-          return data;
-      }
+      using var db = _dbExecutorFactory.CreateExecutor();
+      var data = db.QueryAndTrimResults<User>("SELECT ID, Name FROM Users");
+      return data;
   }
 ```
 
