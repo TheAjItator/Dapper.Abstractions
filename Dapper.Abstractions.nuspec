@@ -13,12 +13,13 @@
     <releaseNotes>$releaseNotes$</releaseNotes>
     <dependencies>
       <dependency id="Dapper" version="2.0.123" />
-      <dependency id="Microsoft.Data.SqlClient" version="4.1.0" />
+      <dependency id="Microsoft.Data.SqlClient" version="5.1.0" />
     </dependencies>
   </metadata>
   <files>
     <file src="LICENSE.txt" target="" />
     <file src="src\Dapper.Abstractions\bin\Release\netstandard2.0\Dapper.Abstractions.dll" target="lib\netstandard2.0\Dapper.Abstractions.dll" />
     <file src="src\Dapper.Abstractions\bin\Release\net6.0\Dapper.Abstractions.dll" target="lib\net6.0\Dapper.Abstractions.dll" />
+    <file src="src\Dapper.Abstractions\bin\Release\net7.0\Dapper.Abstractions.dll" target="lib\net7.0\Dapper.Abstractions.dll" />
   </files>
 </package>
