@@ -8,7 +8,7 @@ namespace Dapper.Abstractions
     /// <summary>
     /// Class to create a Sql Executor
     /// </summary>
-    public class SqlExecutor : IDbExecutor
+    public class DbExecutor : IDbExecutor
     {
         #region Members
 
@@ -23,7 +23,7 @@ namespace Dapper.Abstractions
         /// Constructor for the SQL Executor
         /// </summary>
         /// <param name="sqlConnection"></param>
-        public SqlExecutor(IDbConnection sqlConnection)
+        public DbExecutor(IDbConnection sqlConnection)
         {
             _sqlConnection = sqlConnection;
         }
