@@ -4,7 +4,7 @@
 |----------|:-------------:|
 | Dapper.Abstractions |<a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a> |
 | SqlDapper.Abstractions |<a href="https://badge.fury.io/nu/SqlDapper.Abstractions"><img src="https://badge.fury.io/nu/SqlDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
-| OracleDapper.Abstractions |<a href="https://badge.fury.io/nu/	OracleDapper.Abstractions"><img src="https://badge.fury.io/nu/	OracleDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
+| OracleDapper.Abstractions |<a href="https://badge.fury.io/nu/	OracleDapper.Abstractions"><img src="https://badge.fury.io/nu/OracleDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
 
 Support for .NET Standard 2.0, .NET 6.0 and .NET 8.0
 
