@@ -1,12 +1,33 @@
 # Dapper.Abstractions
 
-[![Build status](https://ci.appveyor.com/api/projects/status/28kh570vv7wdmunk?svg=true)](https://ci.appveyor.com/project/Tazmainiandevil/dapper-abstractions)
+| Package   |     Version     |
+|----------|:-------------:|
+| Dapper.Abstractions |<a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a> |
+| SqlDapper.Abstractions |<a href="https://badge.fury.io/nu/SqlDapper.Abstractions"><img src="https://badge.fury.io/nu/SqlDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
+| OracleDapper.Abstractions |<a href="https://badge.fury.io/nu/OracleDapper.Abstractions"><img src="https://badge.fury.io/nu/OracleDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
 
-<a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a>
+Support for .NET Standard 2.0, .NET 6.0 and .NET 8.0
 
-Support for .NET Standard 2.0 and .NET 6.0
+### **Breaking Change Notice**
 
-Dapper.Abstractions is a fork of DapperWrapper and is a library that wraps the [Dapper](https://github.com/StackExchange/dapper-dot-net) extension methods on `IDbConnection` to make unit testing easier.
+We have introduced a breaking change in the release 4.x to improve the modularity and flexibility of our codebase. As part of this update, we have separated the SQL Client from `Dapper.Abstractions` into its own package, `SqlDapper.Abstractions`.
+
+To use then in code add an additional using statement
+
+```csharp
+using Dapper.Abstractions.Sql;
+```
+
+NOTE: 
+
+The Dapper library has a Preserved Prefix on the Dapper.* package naming on nuget.org and therefore the new packages for splitting out the SQL Client required new naming in order to not conflict with this.
+
+#### Impact:
+- Users will need to update their code to use the new `SqlDapper.Abstractions` package instead of the `Dapper.Abstractions` package to continue utilizing the SQL Client functionality that was previously part of `Dapper.Abstractions`.
+
+# Introduction
+
+Dapper.Abstractions is a fork of DapperWrapper and is a library that wraps the [Dapper](https://github.com/DapperLib/Dapper) extension methods on `IDbConnection` to make unit testing easier. This library is not in any way officially supported by the Dapper project.
 
 Why bother? Because stubbing the extension methods used in a method-under-unit-test is not simple. For instance, you can't just use a library like [Moq](https://github.com/moq/moq4) or [NSubstitute](http://nsubstitute.github.io/) to stub the `.Query` extension method on a fake `IDbConnection`. To work around this, this library introduces a new abstraction, `IDbExecutor`.
 
@@ -51,6 +72,7 @@ In Program.cs
 
 ```C#
 using Dapper.Abstractions;
+using Dapper.Abstractions.Sql;
 
 var builder = WebApplication.CreateBuilder(args);
 ...
@@ -66,6 +88,7 @@ builder.Services.AddSingleton<IDbExecutorFactory>(dbExecutorFactory);
 
 ```C#
 using Dapper.Abstractions;
+using Dapper.Abstractions.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -78,6 +101,7 @@ using IHost host = Host.CreateDefaultBuilder(args)
 or
 ```C#
 using Dapper.Abstractions;
+using Dapper.Abstractions.Sql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 

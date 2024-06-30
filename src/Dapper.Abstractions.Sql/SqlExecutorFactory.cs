@@ -1,10 +1,8 @@
-﻿using System;
 using Microsoft.Data.SqlClient;
+using System;
 
-namespace Dapper.Abstractions
-{
-    public class SqlExecutorFactory : IDbExecutorFactory
-    {
+namespace Dapper.Abstractions.Sql {
+    public class SqlExecutorFactory : IDbExecutorFactory {
         #region Members
 
         private readonly string _connectionString;
@@ -16,10 +14,8 @@ namespace Dapper.Abstractions
         /// </summary>
         /// <param name="connectionString">The connection for the required database</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public SqlExecutorFactory(string connectionString)
-        {
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
+        public SqlExecutorFactory(string connectionString) {
+            if (string.IsNullOrWhiteSpace(connectionString)) {
                 throw new ArgumentNullException(nameof(connectionString));
             }
 
@@ -30,12 +26,11 @@ namespace Dapper.Abstractions
         /// Create an open database connection
         /// </summary>
         /// <returns>The newly created database connection</returns>
-        public IDbExecutor CreateExecutor()
-        {
+        public IDbExecutor CreateExecutor() {
             var dbConnection = new SqlConnection(_connectionString);
             dbConnection.Open();
 
-            return new SqlExecutor(dbConnection);
+            return new DbExecutor(dbConnection);
         }
     }
 }

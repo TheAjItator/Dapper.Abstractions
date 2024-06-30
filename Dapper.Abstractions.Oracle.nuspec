@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$owners$</owners>
+    <license type="file">LICENSE.txt</license>    
+    <projectUrl>https://github.com/Tazmainiandevil/Dapper.Abstractions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <tags>tazmainiandevil Dapper wrapper dapperwrapper abstractions dapper.abstractions IdbConnection database Oracle testability mock unit testing</tags>
+    <releaseNotes>$releaseNotes$</releaseNotes>
+    <dependencies>
+      <dependency id="Dapper.Abstractions" version="4.0.0" />
+      <dependency id="Oracle.ManagedDataAccess.Core" version="23.4.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="LICENSE.txt" target="" />
+    <file src="src\Dapper.Abstractions.Oracle\bin\Release\net6.0\Dapper.Abstractions.Oracle.dll" target="lib\net6.0\Dapper.Abstractions.Oracle.dll" />
+    <file src="src\Dapper.Abstractions.Oracle\bin\Release\net8.0\Dapper.Abstractions.Oracle.dll" target="lib\net8.0\Dapper.Abstractions.Oracle.dll" />
+  </files>
+</package>
