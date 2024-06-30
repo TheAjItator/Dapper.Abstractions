@@ -1,18 +1,29 @@
 # Dapper.Abstractions
 
-[![Build status](https://ci.appveyor.com/api/projects/status/28kh570vv7wdmunk?svg=true)](https://ci.appveyor.com/project/Tazmainiandevil/dapper-abstractions)
-
-<a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a>
+| Package   |     Version     |
+|----------|:-------------:|
+| Dapper.Abstractions |<a href="https://badge.fury.io/nu/Dapper.Abstractions"><img src="https://badge.fury.io/nu/Dapper.Abstractions.svg" alt="NuGet version" height="18"></a> |
+| SqlDapper.Abstractions |<a href="https://badge.fury.io/nu/SqlDapper.Abstractions"><img src="https://badge.fury.io/nu/SqlDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
+| OracleDapper.Abstractions |<a href="https://badge.fury.io/nu/	OracleDapper.Abstractions"><img src="https://badge.fury.io/nu/	OracleDapper.Abstractions.svg" alt="NuGet version" height="18"></a>|
 
 Support for .NET Standard 2.0, .NET 6.0 and .NET 8.0
 
 ### **Breaking Change Notice**
 
-We have introduced a breaking change in the release 4.x to improve the modularity and flexibility of our codebase. As part of this update, we have separated the SQL Client from `Dapper.Abstractions` into its own package, `Dapper.Abstractions.Sql`.
+We have introduced a breaking change in the release 4.x to improve the modularity and flexibility of our codebase. As part of this update, we have separated the SQL Client from `Dapper.Abstractions` into its own package, `SqlDapper.Abstractions`.
+
+To use then in code add an additional using statement
+
+```csharp
+using Dapper.Abstractions.Sql;
+```
+
+NOTE: 
+
+The Dapper library has a Preserved Prefix on the Dapper.* package naming on nuget.org and therefore the new packages for splitting out the SQL Client required new naming in order to not conflict with this.
 
 #### Impact:
-- Users will need to update their code to use the new `Dapper.Abstractions.Sql` package instead of the `Dapper.Abstractions` package to continue utilizing the SQL Client functionality that was previously part of `Dapper.Abstractions`.
-
+- Users will need to update their code to use the new `SqlDapper.Abstractions` package instead of the `Dapper.Abstractions` package to continue utilizing the SQL Client functionality that was previously part of `Dapper.Abstractions`.
 
 # Introduction
 
